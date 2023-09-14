@@ -1,7 +1,19 @@
+using AdvancedTopicsCGroupAssignment1.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
+});
+
+builder.Services.AddDbContext<GroupAssignmentDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GroupAssignmentConnectionString") ?? throw new InvalidOperationException("Connection string 'GroupAssignmentConnectionString' not found.")
+));
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
 
 var app = builder.Build();
 
