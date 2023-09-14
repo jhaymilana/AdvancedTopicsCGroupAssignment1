@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 
 namespace AdvancedTopicsCGroupAssignment1.Models
 {
     public class PersonBusiness
     {
+        [Key]
+        public int Id { get; set; }
+
         [ForeignKey("Person")]
         public int PersonId { get; set; }
         public Person Person { get; set; }
@@ -13,6 +17,7 @@ namespace AdvancedTopicsCGroupAssignment1.Models
         public int BusinessId { get; set; }
         public Business Business { get; set; }
 
+        public PersonBusiness() { }
         public PersonBusiness(Person person, Business business)
         {
             Person = person;

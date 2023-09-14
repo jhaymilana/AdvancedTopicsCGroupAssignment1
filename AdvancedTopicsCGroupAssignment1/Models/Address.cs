@@ -34,7 +34,8 @@ namespace AdvancedTopicsCGroupAssignment1.Models
 
         public HashSet<PersonAddress> personAddresses { get; set; }
 
-        public Address(string streetName, int streetNumber, int unitNumber, string postalCode, Business business)
+        public Address() { }
+        public Address(string streetName, int streetNumber, int? unitNumber, string postalCode, Business? business)
         {
             StreetName = streetName;
             StreetNumber = streetNumber;
