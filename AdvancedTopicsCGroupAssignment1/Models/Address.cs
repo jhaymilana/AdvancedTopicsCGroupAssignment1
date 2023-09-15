@@ -25,6 +25,7 @@ namespace AdvancedTopicsCGroupAssignment1.Models
         [Required]  
         [DisplayName("Postal Code")]
         [DataType(DataType.PostalCode)]
+        [RegularExpression(@"^([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ])\ {0,1}(\d[ABCEGHJKLMNPRSTVWXYZ]\d)$", ErrorMessage = "Postal code should match the format 'A1A 1A1'")]
         [MaxLength(7, ErrorMessage = "Postal Code has to be in the 'A1A A1A' format.")]
         [StringLength(7, MinimumLength = 7)]
         public string PostalCode { get; set; }

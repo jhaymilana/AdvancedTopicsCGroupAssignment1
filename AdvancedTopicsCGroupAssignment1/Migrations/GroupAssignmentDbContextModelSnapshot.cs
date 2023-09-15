@@ -53,7 +53,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasIndex("BusinessId");
 
-                    b.ToTable("Addresss", (string)null);
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.Business", b =>
@@ -79,7 +79,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Businesss", (string)null);
+                    b.ToTable("Business", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.BusinessAddress", b =>
