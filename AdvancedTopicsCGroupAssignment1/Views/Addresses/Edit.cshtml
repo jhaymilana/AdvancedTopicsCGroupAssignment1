@@ -4,50 +4,47 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Address</h4>
+<h4 class="mt-5">Edit Address</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="StreetName" class="control-label"></label>
                 <input asp-for="StreetName" class="form-control" />
                 <span asp-validation-for="StreetName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="StreetNumber" class="control-label"></label>
                 <input asp-for="StreetNumber" class="form-control" />
                 <span asp-validation-for="StreetNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="UnitNumber" class="control-label"></label>
                 <input asp-for="UnitNumber" class="form-control" />
                 <span asp-validation-for="UnitNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="PostalCode" class="control-label"></label>
                 <input asp-for="PostalCode" class="form-control" />
                 <span asp-validation-for="PostalCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="BusinessId" class="control-label"></label>
                 <select asp-for="BusinessId" class="form-control" asp-items="ViewBag.BusinessId"></select>
                 <span asp-validation-for="BusinessId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="form-group mt-4">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
