@@ -1,0 +1,101 @@
+﻿@model AdvancedTopicsCGroupAssignment1.Models.Person
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4 class="mt-5">Person Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+    </dl>
+</div>
+
+<h3>Addresses</h3>
+@if (Model.PersonAddresses != null && Model.PersonAddresses.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Street Number</th>
+                <th>Street</th>
+                <th>Unit Number</th>
+                <th>Postal Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (PersonAddress PersonAddress in Model.PersonAddresses)
+            {
+                <tr>
+                    <td>@PersonAddress.Address.StreetNumber</td> |
+                    <td>@PersonAddress.Address.StreetName</td> |
+                    <td>@PersonAddress.Address.UnitNumber</td> |
+                    <td>@PersonAddress.Address.PostalCode</td> 
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No addresses associated with this person.</p>
+}
+
+<h3>Businesses</h3>
+@if (Model.PersonBusinesses != null && Model.PersonBusinesses.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (PersonBusiness PersonBusiness in Model.PersonBusinesses)
+            {
+                <tr>
+                    <td>@PersonBusiness.Business.Name</td> |
+                    <td>@PersonBusiness.Business.PhoneNumber</td> |
+                    <td>@PersonBusiness.Business.EmailAddress</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No businesses associated with this person.</p>
+}
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a> 
+    <a asp-action="AddAddress" asp-route-id="@Model?.Id" class="btn btn-primary ms-2">Add Address</a>
+    <a asp-action="AddBusiness" asp-route-id="@Model?.Id" class="btn btn-primary ms-2">Add Business</a>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+</div>

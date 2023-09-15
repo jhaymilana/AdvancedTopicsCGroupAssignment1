@@ -1,0 +1,56 @@
+﻿@model AdvancedTopicsCGroupAssignment1.Models.Person
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="mt-5">Create a new Person</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" id="phoneNumberInput" class="form-control" oninput="formatPhoneNumber()"/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        function formatPhoneNumber() {
+            var input = document.getElementById('phoneNumberInput');
+            var value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+            if (value.length >= 10) {
+                var formattedValue = '(' + value.substr(0, 3) + ')-' + value.substr(3, 3) + '-' + value.substr(6, 4);
+                input.value = formattedValue;
+            } else {
+                input.value = value;
+            }
+        }
+    </script>
+}
