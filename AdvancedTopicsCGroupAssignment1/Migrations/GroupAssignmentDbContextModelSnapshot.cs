@@ -53,7 +53,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasIndex("BusinessId");
 
-                    b.ToTable("Addresss");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.Business", b =>
@@ -79,7 +79,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Businesss");
+                    b.ToTable("Business", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.BusinessAddress", b =>
@@ -102,7 +102,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasIndex("BusinessId");
 
-                    b.ToTable("BusinessAddresses");
+                    b.ToTable("BusinessAddresses", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.Person", b =>
@@ -133,7 +133,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Persons", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.PersonAddress", b =>
@@ -156,7 +156,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("PersonAddresses");
+                    b.ToTable("PersonAddresses", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.PersonBusiness", b =>
@@ -179,7 +179,7 @@ namespace AdvancedTopicsCGroupAssignment1.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("PersonBusinesss");
+                    b.ToTable("PersonBusinesss", (string)null);
                 });
 
             modelBuilder.Entity("AdvancedTopicsCGroupAssignment1.Models.Address", b =>
