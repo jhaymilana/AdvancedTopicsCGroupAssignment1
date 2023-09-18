@@ -30,6 +30,38 @@
     </dl>
 </div>
 <div>
+
+
+    <h3>Associated Addresses</h3>
+    <ul>
+        @foreach (var address in Model.businesssAdresses)
+        {
+            <li>
+                @address
+                <a asp-action="RemoveAddress" asp-route-businessId="@Model.Id" asp-route-addressId="@address.Id">Remove</a>
+            </li>
+        }
+    </ul>
+</div>
+<div>
+    <h3>Associated People</h3>
+    <ul>
+        @foreach (var person in Model.personBusinesses)
+        {
+            <li>
+                @person
+                <a asp-action="RemovePerson" asp-route-businessId="@Model.Id" asp-route-personId="@person.Id">Remove</a>
+            </li>
+        }
+    </ul>
+</div>
+<div>
     <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning mt-4">Edit</a> 
     <a asp-action="Index" class="btn btn-secondary mt-4">Back to List</a>
+</div>
+<div>
+    <a asp-action="CreateAddress" asp-route-businessId="@Model.Id">Create New Address</a> |
+    <a asp-action="AddExistingAddress" asp-route-businessId="@Model.Id">Add Existing Address</a> |
+    <a asp-action="CreatePerson" asp-route-businessId="@Model.Id">Create New Person</a> |
+    <a asp-action="AddExistingPerson" asp-route-businessId="@Model.Id">Add Existing Person</a>
 </div>
