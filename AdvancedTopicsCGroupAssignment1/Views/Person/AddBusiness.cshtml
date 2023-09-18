@@ -1,11 +1,36 @@
-﻿@model AdvancedTopicsCGroupAssignment1.Models.Person
+﻿@model AdvancedTopicsCGroupAssignment1.Models.PersonBusiness
 
 @{
     ViewData["Title"] = "Add Business";
 }
 
-<h1>Add a Business:</h1>
+<h4 class="mt-5">Add Business</h4>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<form asp-action="AddBusiness">
+    <div class="form-group">
+        <input type="hidden" asp-for="PersonId" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BusinessId" class="control-label">Select Business</label>
+        <select asp-for="BusinessId" class="form-control">
+            @if (ViewBag.Businesses != null)
+            {
+                foreach (Business business in ViewBag.Businesses)
+                {
+                    <option value="@business.Id">@business.Name | @business.PhoneNumber | @business.EmailAddress</option>
+                }
+            }
+            else
+            {
+                <option value="Please Create a Business"></option>
+            }
+        </select>
+        <span asp-validation-for="BusinessId" class="text-danger"></span>
+    </div>
+
+    <div class="mt-4">
+        <input type="submit" value="Add Business" class="btn btn-success" />
+        <a asp-action="Details" asp-route-id="@Model.PersonId" class="btn btn-secondary ms-2">Back to Person</a>
+    </div>
+</form>

@@ -52,8 +52,6 @@ namespace AdvancedTopicsCGroupAssignment1.Controllers
         }
 
         // POST: Person/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,PhoneNumber")] Person person)
@@ -84,8 +82,6 @@ namespace AdvancedTopicsCGroupAssignment1.Controllers
         }
 
         // POST: Person/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Email,PhoneNumber")] Person person)
@@ -168,23 +164,39 @@ namespace AdvancedTopicsCGroupAssignment1.Controllers
                 return NotFound();
             }
 
-            var person = await _context.Persons
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Person? person = await _context.Persons.FirstOrDefaultAsync(m => m.Id == id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            List<Address> addresses = await _context.Addresss.ToListAsync();
+
+            ViewBag.Addresss = addresses;
+
+            PersonAddress personAddress = new PersonAddress
+            {
+                PersonId = person.Id
+            };
+
+            return View("AddAddress", personAddress);
         }
 
         // POST: /Person/AddAddress
-
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddAddress(PersonAddress personAddress)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.PersonAddresses.Add(personAddress);
+                await _context.SaveChangesAsync();
 
-
-
+                return RedirectToAction("Details", new { id = personAddress.PersonId });
+            }
+            ViewBag.Addresses = await _context.Addresss.ToListAsync();
+            return View("AddAddress", personAddress);
+        }
 
         // GET: /Person/AddBusiness
         public async Task<IActionResult> AddBusiness(int? id)
@@ -194,16 +206,38 @@ namespace AdvancedTopicsCGroupAssignment1.Controllers
                 return NotFound();
             }
 
-            var person = await _context.Persons
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Person? person = await _context.Persons.FirstOrDefaultAsync(m => m.Id == id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            List<Business> businesses = await _context.Businesss.ToListAsync();
+
+            ViewBag.Businesses = businesses;
+
+            PersonBusiness personBusiness = new PersonBusiness
+            {
+                PersonId = person.Id
+            };
+
+            return View("AddBusiness", personBusiness);
         }
 
-        // GET: /Person/AddBusiness
+        // POST: /Person/AddBusiness
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBusiness(PersonBusiness personBusiness)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.PersonBusinesss.Add(personBusiness);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Details", new { id = personBusiness.PersonId });
+            }
+            ViewBag.Businesses = await _context.Businesss.ToListAsync();
+            return View("AddBusiness", personBusiness);
+        }
     }
 }

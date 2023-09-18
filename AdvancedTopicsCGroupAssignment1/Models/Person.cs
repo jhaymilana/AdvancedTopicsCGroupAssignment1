@@ -46,4 +46,4 @@ namespace AdvancedTopicsCGroupAssignment1.Models
             PersonBusinesses = new HashSet<PersonBusiness>();
         }
     }
-}
+}   
