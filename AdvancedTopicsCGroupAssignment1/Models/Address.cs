@@ -34,7 +34,6 @@ namespace AdvancedTopicsCGroupAssignment1.Models
         public Business? Business { get; set; }
 
         public HashSet<PersonAddress> personAddresses { get; set; }
-        public HashSet<BusinessAddress> businesssAdresses { get; set; }
 
         public Address() { }
         public Address(string streetName, int streetNumber, int? unitNumber, string postalCode, Business? business)

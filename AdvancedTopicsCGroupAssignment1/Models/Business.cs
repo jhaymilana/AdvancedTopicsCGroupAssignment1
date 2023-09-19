@@ -26,16 +26,8 @@ namespace AdvancedTopicsCGroupAssignment1.Models
         public string EmailAddress { get; set; }
 
         public HashSet<PersonBusiness> personBusinesses { get; set; }
-        public HashSet<BusinessAddress> businesssAdresses { get; set; }
 
-        public Business() { }
-        public Business(string name, string emailAdress, string phoneNumber) 
-        {
-            Name = name;
-            EmailAddress = emailAdress;
-            PhoneNumber = phoneNumber;
-            personBusinesses = new HashSet<PersonBusiness>();
-            businesssAdresses = new HashSet<BusinessAddress>();
-        }
+        public HashSet<Address> addresses { get; set; }
+
     }
 }
